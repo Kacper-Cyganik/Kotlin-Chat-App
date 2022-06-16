@@ -3,8 +3,10 @@ package com.example.chatapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -19,6 +21,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var btnSignUp: Button
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
+    private lateinit var bottomText: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +33,12 @@ class SignUpActivity : AppCompatActivity() {
         edtPassword = findViewById(R.id.edt_password)
         btnSignUp = findViewById(R.id.btnSignUp)
 
+        val bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.bottom_animation)
+        bottomText = findViewById(R.id.bottom_text_img)
+
         mAuth = FirebaseAuth.getInstance()
 
+        bottomText.startAnimation(bottomAnimation)
 
         btnSignUp.setOnClickListener{
             val name = edtName.text.toString()

@@ -13,29 +13,19 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"/>
 
-    <ImageView
-        android:id="@+id/arrow"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@color/green"
-        app:srcCompat="@drawable/arrow_icon"
-
-        android:layout_marginTop="350dp"
-        android:layout_below="@id/app_logo"
-        />
-
     <TextView
+        android:id="@+id/loading_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/arrow"
+        android:layout_below="@id/app_logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="300dp"
         android:text="Loading..."
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Chatty"

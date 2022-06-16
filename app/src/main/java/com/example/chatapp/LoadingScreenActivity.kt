@@ -1,37 +1,42 @@
 package com.example.chatapp
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
+
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.animation.doOnEnd
 
 class LoadingScreenActivity : AppCompatActivity()
 {
+    private lateinit var appLogo: ImageView
+    private lateinit var loadingText: TextView
+    private lateinit var appName: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading_screen)
 
-        val imageView = findViewById<ImageView>(R.id.arrow)
+        val topAnimation = AnimationUtils.loadAnimation(this, R.anim.top_animation)
+        val middleAnimation = AnimationUtils.loadAnimation(this, R.anim.middle_animation)
+        val bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.bottom_animation)
 
-        val moveRight = ObjectAnimator.ofFloat(imageView, "translationX", 1150f).apply{duration = 3500}
-        val moveLeft = ObjectAnimator.ofFloat(imageView, "translationX", 10f).apply{duration = 3500}
-        val rotate = ObjectAnimator.ofFloat(imageView, "rotationY", 0.0f, 180f).apply { duration = 100 }
+        appLogo = findViewById(R.id.app_logo)
+        loadingText = findViewById(R.id.loading_text)
+        appName = findViewById(R.id.app_name)
 
-        val runner = AnimatorSet().apply {
-            play(moveRight)
-            play(moveLeft).after(moveRight).with(rotate)
-        }
-        val intent = Intent(this, LoginActivity::class.java)
-        AnimatorSet().apply {
-            play(runner)
-            start()
-            doOnEnd {
-                startActivity(intent)
-                finish()
-            }
-        }
+        appLogo.startAnimation(topAnimation)
+        appName.startAnimation(middleAnimation)
+        loadingText.startAnimation(bottomAnimation)
+
+        val loadingScreenTimeOut = 3500
+        val intent = Intent(this@LoadingScreenActivity, LoginActivity::class.java)
+        Handler().postDelayed({
+            startActivity(intent)
+            finish()
+        }, loadingScreenTimeOut.toLong())
+
     }
 }

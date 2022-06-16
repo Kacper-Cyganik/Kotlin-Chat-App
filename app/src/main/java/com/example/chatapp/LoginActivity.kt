@@ -3,8 +3,10 @@ package com.example.chatapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
@@ -14,6 +16,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var edtPassword: EditText
     private lateinit var btnLogin: Button
     private lateinit var btnSignUp: Button
+    private lateinit var bottomText: ImageView
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -22,12 +25,17 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         supportActionBar?.hide()
 
+        val bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.bottom_animation)
+        bottomText = findViewById(R.id.bottom_text_img)
+
         mAuth = FirebaseAuth.getInstance()
 
         edtEmail = findViewById(R.id.edt_email)
         edtPassword = findViewById(R.id.edt_password)
         btnLogin = findViewById(R.id.btnLogin)
         btnSignUp = findViewById(R.id.btnSignUp)
+
+        bottomText.startAnimation(bottomAnimation)
 
         btnSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
