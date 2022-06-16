@@ -10,7 +10,7 @@
         android:id="@+id/app_logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/circle"
+        android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"/>
 
@@ -66,5 +66,14 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         />
+
+    <ImageView
+        android:id="@+id/bottom_text_img"
+        android:layout_below="@id/btnSignUp"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:src="@drawable/bottom_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"/>
 
 </RelativeLayout>
