@@ -10,7 +10,6 @@ Screenshot of splash screen.
 <img src="images/login_screen.png"  height=500 width=250>
 <br/>
 Screenshot of login activity.
-<br/>
 <img src="images/chat_screen.png"  height=500 width=250>
 <br/>
 Screenshot of actual chat.
